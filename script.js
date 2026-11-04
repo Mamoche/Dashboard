@@ -4,11 +4,12 @@ const appDispalay = document.getElementById("theApp");
 const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("genderInput");
 const greetings = document.getElementById("Greetings");
+const clock = document.getElementById("clock");
 let username;
 let gender;
+let time = new Date();
 enterName.addEventListener("click", ()=>{
     username = nameInput.value.trim();
-    console.log(genderInput);
     gender = genderInput.value;
     if(username === "" || gender === ""){
         alert("You didn't enter the name or the gender");
@@ -16,6 +17,7 @@ enterName.addEventListener("click", ()=>{
     }
     accountDisplay.style.display = "none";
     appDispalay.style.display = "flex";
+    displayTime();
     if(gender == "Male"){
         greetings.textContent = "Hello, Mr. " + username;
     }else if(gender == "Female"){
@@ -24,9 +26,17 @@ enterName.addEventListener("click", ()=>{
         greetings.textContent = "Greetings my dear " + username;
     }
 });
+
+function displayTime() {
+  setTimeout(function () {
+    clock.textContent = `It's ${time.toLocaleTimeString()}`;
+    time = new Date();
+    displayTime();
+  }, 1000);
+}
 /*TODO:
 1- system of name = true
-2- clock
+2- clock = true
 3- weather(API)
 4- todo list
 5- theme (custome)
